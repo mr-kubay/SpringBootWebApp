@@ -1,5 +1,8 @@
 package ua.springboot.web.controller;
 
+import java.io.File;
+
+import javax.persistence.MappedSuperclass;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +25,39 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping("/create")
-	public String showAddCarForm(Model model) {
+	public String showAddUserForm(Model model) {
 		model.addAttribute("userModel", new User());
 		return "user/create";
 	}
 	
 	@PostMapping("/create")
-	public String showAddCarFormPost(@ModelAttribute("userModel") @Valid User user, BindingResult result) {
+	public String showAddUserFormPost(@ModelAttribute("userModel") @Valid User user, BindingResult result) {
 		if(result.hasErrors()) {
 			return "user/create";
 		}
-		userService.saveUser(user);
+			System.out.println("asdff");
+			String rootPath = System.getProperty("user.dir");
+			userService.saveUser(user);
+
+			File uploadDir = new File(rootPath + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "user_" + user.getId());
+			if(!uploadDir.exists()) {
+				uploadDir.mkdir();
+			}
+		return "redirect:/";
+	}
+	
+	@GetMapping("/login")
+	public String showloginPage(Model model) {
+		
+		model.addAttribute("userModel", new User());
+		return "user/login";
+	}
+	
+	@PostMapping("/login")
+	public String postLoginPage(@ModelAttribute("userModel") @Valid User user, BindingResult result) {
+		if(result.hasErrors()) {
+			return "user/login";
+		}
 		return "redirect:/";
 	}
 }

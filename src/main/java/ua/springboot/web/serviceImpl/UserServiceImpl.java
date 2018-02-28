@@ -26,10 +26,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User findUser(String name, String surname, String email) {
-		return userRep.findUser(name, surname, email);
+	public User findUser(String login, String email) {
+		return userRep.findUser(login, email);
 	}
 
-	
+	@Override
+	public User returnUser(String login, String password) {
+		return userRep.returnUser(login, password);
+	}
 
 }

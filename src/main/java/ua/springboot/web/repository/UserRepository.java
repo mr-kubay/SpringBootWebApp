@@ -10,6 +10,9 @@ import ua.springboot.web.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
 
-	@Query("select u from User u where u.name = :name and u.surname = :surname and u.email = :email")
-	User findUser(@Param("name") String name, @Param("surname") String surname, @Param("email") String email);
+	@Query("select u from User u where u.login = :login and u.email = :email")
+	User findUser(@Param("login") String login, @Param("email") String email);
+	
+	@Query("select u from User u where u.login = :login and u.password = :password")
+	User returnUser(@Param("login") String login, @Param("password") String password);
 }

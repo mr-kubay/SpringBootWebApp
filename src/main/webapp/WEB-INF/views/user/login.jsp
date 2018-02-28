@@ -15,23 +15,18 @@ color:red;
 </style>
 </head>
 <body>
- <h1>Add user</h1>
+ <h1>Login</h1>
  
  <form:errors path="user" />
  <form:form 
- 		 action = "${pageContext.request.contextPath}/user/create"
+ 		 action = "${pageContext.request.contextPath}/user/login"
 		 method = "POST"
 		 modelAttribute="userModel">
 		 
 	user login<form:input path="login" />
 	<br>
-	uesr email <form:input path="email"/> 
-	<br>
 	user password <form:password path="password"/> 
-		<br>
-	user confirm password <form:password path="confirmPassword"/> 
-		<br>	
- 
+		<br> 
  	<input type = "submit" value = "create new car" >
  </form:form>
  

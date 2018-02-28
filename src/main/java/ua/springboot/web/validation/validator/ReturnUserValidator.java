@@ -8,23 +8,25 @@ import org.springframework.stereotype.Component;
 
 import ua.springboot.web.entity.User;
 import ua.springboot.web.repository.UserRepository;
-import ua.springboot.web.validation.annotation.Personal;
+import ua.springboot.web.validation.annotation.ReturnUser;
 
 @Component
-public class PersonalValidator implements ConstraintValidator<Personal, User>{
+public class ReturnUserValidator implements ConstraintValidator<ReturnUser, User>{
 
 	@Autowired
 	private UserRepository userRep;
+
 	@Override
-	public void initialize(Personal arg0) {
+	public void initialize(ReturnUser arg0) {
 		
 	}
 
 	@Override
 	public boolean isValid(User user, ConstraintValidatorContext arg1) {
-		if(userRep.findUser(user.getLogin(), user.getEmail())!=null) {
+		if(userRep.returnUser(user.getLogin(), user.getPassword()) == null) {
 			return false;
-		} else return true;
+		}
+		else return true;
 	}
 
 }

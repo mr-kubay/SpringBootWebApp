@@ -8,5 +8,6 @@ public interface UserService {
 
 	void saveUser(User user);
 	List<User> findAllUsers();
-	User findUser(String name, String surname, String email);
+	User findUser(String login, String email);
+	User returnUser(String login, String password);
 }

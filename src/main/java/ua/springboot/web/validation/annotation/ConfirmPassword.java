@@ -8,15 +8,15 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import ua.springboot.web.validation.validator.PersonalValidator;
-
+import ua.springboot.web.validation.validator.PasswordConfirmValidator;
 
 @Target(value = ElementType.TYPE)
 @Retention(value = RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = PersonalValidator.class)
-public @interface Personal {
-
-	String message() default "There is user in DB wth current login and email";
-	Class<?>[] groups() default {};
+@Constraint(validatedBy = PasswordConfirmValidator.class)
+public @interface ConfirmPassword {
+	
+	String message() default "Fields aren't equal";
+	Class<?>[] groups() default{};
 	Class<? extends Payload>[] payload() default {};
+
 }
