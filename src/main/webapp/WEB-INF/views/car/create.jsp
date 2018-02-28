@@ -26,14 +26,12 @@ color:red;
 	<form:errors path = "make" cssClass="error"/> <br>
 	Car model <form:input path="model"/> 
 	<form:errors path = "model" cssClass="error" />
-		<br>
+		<br>	
 	
 	Car color <form:select path="color">
-		<form:option value="black">Black</form:option>
-		<form:option value="blue">Blue</form:option>
-		<form:option value="white">white</form:option>
-		<form:option value="red">Red</form:option>
-		<form:option value="Pink">Pink</form:option>
+		<c:forEach items = "${colorList}" var = "color">
+			<form:option value="${color}">${color.id}</form:option>
+		</c:forEach>
 	</form:select> <br>
  
  	<input type = "submit" value = "create new car" >

@@ -30,8 +30,9 @@ public class Car extends BaseEntity{
 	private String model;
 
 	
-	
-	private String color;
+	@OneToOne
+	@JoinColumn(name = "color_id")
+	private Color color;
 	
 	public Car() {}
 
@@ -51,11 +52,11 @@ public class Car extends BaseEntity{
 		this.model = model;
 	}
 
-	public String getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(String color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 	

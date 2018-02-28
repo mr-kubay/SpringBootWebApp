@@ -17,6 +17,7 @@ color:red;
 <body>
  <h1>Add user</h1>
  
+ <form:errors path="user" />
  <form:form 
  		 action = "${pageContext.request.contextPath}/user/create"
 		 method = "POST"
